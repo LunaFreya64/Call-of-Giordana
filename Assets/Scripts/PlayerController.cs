@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float forwardInput;
     public float speed = 20.0f;
+    public float health = 20.0f;
+    public float anxiety = 0.0f;
+    
     void Start()
     {
         
