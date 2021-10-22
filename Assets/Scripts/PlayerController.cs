@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public bool haveCtome = false;
     public float keyPieces = 0;
     public float form = 0;
+    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI anxietyText;
     
     void Start()
     {
@@ -29,10 +33,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthText.text = "Health: " + health;
+        anxietyText.text = "Anxiety: " + anxiety + "%";
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.up*Time.deltaTime*speed*forwardInput);
-        transform.Translate(Vector3.right*Time.deltaTime*speed*horizontalInput);
+        if (health > 0)
+        {
+            transform.Translate(Vector3.up*Time.deltaTime*speed*forwardInput);
+            transform.Translate(Vector3.right*Time.deltaTime*speed*horizontalInput);   
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && haveStome)
         {
@@ -52,6 +62,11 @@ public class PlayerController : MonoBehaviour
         {
             inForm = true;
             spriteRenderer.sprite = cthulhu;
+        }
+        
+        if (health <= 0)
+        {
+            gameOverText.gameObject.SetActive(true);
         }
     }
         IEnumerator IncreaseAnxiety()
