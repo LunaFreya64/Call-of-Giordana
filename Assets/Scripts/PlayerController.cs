@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2) && haveCtome)
         {
             inForm = true;
+            form = 2;
             spriteRenderer.sprite = cthulhu;
         }
         

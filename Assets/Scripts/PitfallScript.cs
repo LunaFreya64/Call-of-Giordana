@@ -19,7 +19,7 @@ public class PitfallScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (playerControllerScript.form == 0)
+        if (playerControllerScript.form == 0 || playerControllerScript.form == 1)
         {
             playerControllerScript.health = playerControllerScript.health - 20;
         }
